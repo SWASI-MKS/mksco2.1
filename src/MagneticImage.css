@@ -1,0 +1,21 @@
+.magnetic-image {
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.magnetic-container {
+  display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.2s ease-out;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.magnetic-container:hover {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25); /* Optional: more pop */
+  cursor: pointer;
+}

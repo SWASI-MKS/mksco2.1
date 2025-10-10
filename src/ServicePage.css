@@ -1,0 +1,31 @@
+.service-page {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-page:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.service-page h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937; /* gray-800 */
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.service-page p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #374151; /* gray-700 */
+  text-align: center;
+}

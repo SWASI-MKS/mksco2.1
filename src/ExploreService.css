@@ -1,0 +1,187 @@
+/* ExploreService.css */
+.explore-service {
+  padding: 2rem;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.underline {
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #0000FF;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  margin-bottom: 0.5rem;
+}
+
+.feature.locked {
+  pointer-events: none; /* makes it unclickable */
+  color:  #0000FF;       /* same color as normal text */
+  text-decoration: none; /* no line-through */
+  cursor: default;       /* default cursor instead of pointer */
+}
+
+
+.feature.unlocked {
+  color: #0000FF;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.feature.unlocked:hover {
+  color: #ff6600;
+}
+
+.explore-service {
+  padding: 40px;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  position: relative;
+  color: #333;
+}
+
+.section-heading .underline {
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #000000;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.service-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  cursor: pointer;
+}
+
+.service-card.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-card .icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.service-card .title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.service-card .description {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.service-card .features {
+  padding-left: 20px;
+  list-style-type: disc;
+  color: #333;
+  font-size: 0.92rem;
+}
+
+.service-card .features li {
+  margin-bottom: 8px;
+}
+
+.service-card .features li a {
+  color:  #0000FF;
+  text-decoration: none;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.service-card .features li a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 1.75rem;
+  }
+
+  .service-card .title {
+    font-size: 1.1rem;
+  }
+
+  .service-card .description {
+    font-size: 0.9rem;
+  }
+}

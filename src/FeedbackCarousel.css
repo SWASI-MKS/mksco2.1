@@ -1,0 +1,81 @@
+/* Container for the whole carousel */
+.carousel-container {
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+  padding: 40px 20px;
+  background: #f9f9e8;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 12px;
+}
+
+/* Flex wrapper that scrolls */
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: fit-content;
+}
+
+/* Individual feedback card */
+.feedback-card {
+  flex: 0 0 calc(1000px / 3); /* Ensures 3 cards fit within 1000px */
+  box-sizing: border-box;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  margin-right: 20px; /* Spacing between cards */
+}
+
+/* Last card should not have margin to prevent overflow */
+.feedback-card:last-child {
+  margin-right: 0;
+}
+
+/* Feedback content */
+.feedback-text {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+}
+
+.feedback-author {
+  margin-top: 12px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Navigation buttons */
+.carousel-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.carousel-buttons button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin: 0 10px;
+  font-size: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.carousel-buttons button:hover {
+  background-color: #333;
+}
+
+/* Responsive - Make sure cards resize properly on smaller screens */
+@media (max-width: 768px) {
+  .feedback-card {
+    flex: 0 0 100%;
+    margin-right: 0;
+  }
+
+  .carousel-wrapper {
+    gap: 0;
+  }
+}
