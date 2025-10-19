@@ -1,10 +1,11 @@
-  import React from 'react';
-  import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useRef } from 'react'; // Add at the top
 
   // Import components/pages
   import HomePage from './HomePage';
   import Header from './Header';
-
+import LoadingScreen from './LoadingScreen';
   // Services - Vaastu & Surveying
   import VaastuPlan from './VaastuPlan';
   import Surveying from './Surveying';
@@ -62,11 +63,43 @@
   import SiteInspections from "./SiteInspections";
 
 
-  function App() {
-    return (
-      <Router>
-        {/* Common Header for all pages */}
-        <Header />
+function App() {
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const videoRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+const handleLoadingComplete = () => setIsLoading(false);
+
+
+  useEffect(() => {
+    setShowVideoModal(true); // show modal on every refresh
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => console.log(err));
+    }
+  }, []);
+
+  const closeVideoModal = () => {
+    setShowVideoModal(false);
+  };
+
+  return (
+  <Router>
+    {isLoading ? (
+      <LoadingScreen onComplete={handleLoadingComplete} />
+    ) : (
+      <>
+        {/* Video Modal */}
+        {showVideoModal && (
+          <div className="video-modal-overlay">
+            <div className="video-modal">
+              <button className="close-video-btn" onClick={closeVideoModal}>×</button>
+              <video ref={videoRef} autoPlay muted loop playsInline>
+                <source src="/diwali.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        )}
+
+          <Header />
 
         <Routes>
           {/* Home Page */}
@@ -132,6 +165,8 @@
   <Route path="/services/inspection/site" element={<SiteInspections />} />
 
         </Routes>
+        </>
+    )}
       </Router>
     );
   }

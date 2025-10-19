@@ -61,6 +61,20 @@ function GallerySection() {
             <MagneticImage src={src} alt={`Project ${index + 1}`} className="featured-img" />
           </div>
         ))}
+      </div><br></br>
+      {/* Video Section */}
+      <div className="videos-section" style={{ marginTop: '40px', textAlign: 'center' }}>
+        <h3 style={{ color: "#0000FF", fontSize: "38px", fontWeight: "bold" }}>Animated house model</h3><br></br>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+          <video controls style={{ maxWidth: '45%', height: 'auto' }}>
+            <source src="/vid1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video controls style={{ maxWidth: '45%', height: 'auto' }}>
+            <source src="/vid2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       </div>
     </section>
   );
@@ -101,12 +115,19 @@ function HomePage() {
     </div>
   </div>
 </header>
+</nav>
 
-      </nav>
+<section className="hero-section">
+  <video className="hero-video" autoPlay muted loop playsInline>
+    <source src={villaVideo} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div className="hero-overlay">
+    <h1 className="hero-title">Turning Ideas into Landmarks</h1>
+    <p className="hero-subtitle">From Concept to Concrete</p>
+  </div>
+</section>
 
-      <div className="video-container">
-        <video className="hero-video" src={villaVideo} autoPlay loop muted playsInline style={{ width: '100vw', height: '100vh', objectFit: 'cover' }} />
-      </div>
 
       <div className="main-content">
         <StatsSection />
@@ -206,7 +227,7 @@ function HomePage() {
           className="footer-logo"
           style={{ cursor: "pointer" }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        />
+        /><br></br>
         <span className="footer-text">MKS CONSULTANT</span>
       </div>
       <p>
@@ -233,10 +254,10 @@ function HomePage() {
         </a> */}
         <a href="https://wa.me/919865026160" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-whatsapp"></i>
-        </a>
+        </a>&nbsp;&nbsp;
         <a href="https://www.youtube.com/@maduraicivilengineers6591" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-youtube"></i>
-        </a>
+        </a>&nbsp;&nbsp;
         {/* Yahoo Icon */}
         <a href="https://www.yahoo.com/" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-yahoo"></i>

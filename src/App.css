@@ -71,8 +71,7 @@ nav {
 
 .nav-right a:hover {
   color: #ffffff;
-  border-bottom: 2px solid #ffffff;
-  padding-bottom: 2px;
+  text-decoration: underline;
 }
 
 .logo-container {
@@ -111,19 +110,24 @@ nav {
 
 .video-container {
   width: 100%;
-  height: 100vh;
+  height: 50vh;
   position: relative;
   overflow: hidden;
-    margin-top: 40px;
+  
 }
 
 .hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-    margin-top: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  transform: translate(-50%, -50);
 }
+
 
 .main-content {
   background: beige;
@@ -142,7 +146,10 @@ nav {
   max-width: 1200px;
   text-align: center;
 }
-
+.stat-box {
+  flex: 1 1 200px;
+  min-width: 180px;
+}
 .stat-box p {
   font-size: 16px;
   color: #ccc;
@@ -155,9 +162,9 @@ nav {
 
 .stats-grid {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 20px;
 }
 
 .stat-box h3 {
@@ -179,7 +186,7 @@ nav {
 .about-section {
   width: 100vw;
   background-color: #e9e9ec;
-  padding: 60px 40px;
+    padding: 5vw 5vw;
   margin-top: 40px; /* ← This adds the gap */
   box-sizing: border-box;
   border-radius: 0;
@@ -188,9 +195,9 @@ nav {
 
 .about-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 5vw;
   color: #333;
   font-family: 'Segoe UI', sans-serif;
   line-height: 1.7;
@@ -445,53 +452,7 @@ li {
 .facebook i { color: #4267B2; }
 .youtube i  { color: #ff0000; }
 
-.contact-container {
-  text-align: center;
-  background: #0c0c0c;
-  padding: 40px 20px;
-  color: #fff;
-}
 
-.contact-heading {
-  color: #00ffff;
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 25px;
-}
-
-.social-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 30px;
-}
-
-.glow-btn {
-  padding: 10px 18px;
-  border-radius: 12px;
-  background-color: #111;
-  border: 2px solid transparent;
-  color: #00ffff;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 0 12px #00ffff40;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.glow-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px #00ffffa8;
-}
-
-.instagram i { color: #e1306c; }
-.whatsapp i { color: #25d366; }
-.gmail i    { color: #d44638; }
-.facebook i { color: #4267B2; }
-.youtube i  { color: #ff0000; }
 
 /* New map section styling */
 .map-section {
@@ -603,6 +564,40 @@ li {
 }
 /* General responsive adjustments */
 @media (max-width: 768px) {
+  nav, .header-menu-section {
+    padding: 0 20px;
+    height: auto;
+    flex-direction: column;
+    gap: 10px;
+
+  flex-wrap: wrap;
+
+  }
+
+  .logo-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-right {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-right a {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .video-container {
+    height: 60vh;
+    margin-top: 80px;
+  }
+
+  .hero-video {
+    margin-top: 0;
+  }
+
   .social-links {
     flex-direction: column;
     align-items: center;
@@ -679,13 +674,15 @@ li {
   to { opacity: 1; transform: scale(1); }
 }
 .maps-containers {
-  width: 1460px;
-  height: 570px;
+  width: 95vw;        /* responsive width */
+  height: 50vh;       /* proportional height */
+  max-width: 1200px;  /* avoid stretching too wide */
   margin: 0 auto;
-  box-shadow: 0 0 30px cyan; /* optional glow effect */
+  box-shadow: 0 0 30px cyan;
   border-radius: 10px;
   overflow: hidden;
 }
+
 .maps-containers iframe {
   width: 100%;
   height: 100%;
@@ -754,136 +751,143 @@ li {
   font-size: 13px;
 }
 .footer-logo {
-  width: 50px;         /* or whatever size you like */
+  width: 50px;          /* set the size */
   height: 50px;
-MagneticImage.css
-.magnetic-image {
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  will-change: transform;
-  cursor: pointer;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;   /* makes it a perfect circle */
+  object-fit: cover;    /* ensures the image fits nicely inside the circle */
 }
 
-.magnetic-container {
-  display: inline-block;
-  transform-style: preserve-3d;
-  will-change: transform;
-  transition: transform 0.2s ease-out;
-  backface-visibility: hidden;
-  perspective: 1000px;
-}
 
-.magnetic-container:hover {
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25); /* Optional: more pop */
-  cursor: pointer;
-}
- 
-  border-radius: 50%;  /* makes it a circle */
-  object-fit: cover;   /* keeps image nicely contained */
-  border: 2px solid #fff; /* optional: add white border */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* optional: soft shadow */
-}
-.footer-brand {
+/* Video Modal Styles */
+.video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px; /* spacing between logo and text */
-  margin-bottom: 1rem; /* optional spacing from other content */
-}
-.footer-text {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffffff; /* match your theme */
-}
-.footer-links {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px;
-  background-color: #0000;
-  color: #fff;
-  flex-wrap: wrap;
-  gap: 40px;
+  z-index: 10000;
 }
 
-.footer-links h3 {
-  font-size: 1.1rem;
+.video-modal {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  background-color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.video-modal video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  display: block;
+  object-fit: contain;
+}
+
+.close-video-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10001;
+  transition: background-color 0.3s ease;
+}
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  background-color: #f5f5dc; /* beige fallback color */
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.35); /* optional dark overlay */
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
   margin-bottom: 10px;
 }
 
-.footer-links ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
-.footer-links li {
-  margin-bottom: 8px;
+.close-video-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a:link, a:visited {
+  color: #66C7F4; /* replace with your desired color */
+  text-decoration: underline; /* optional */
 }
 
-.footer-links li a {
-  color: #bbb;
-  text-decoration: none;
-  transition: color 0.3s, text-decoration 0.3s;
+@media (min-width: 1600px) {
+  body {
+    font-size: 18px;
+  }
+  .maps-containers {
+    max-width: 1400px;
+    height: 70vh;
+  }
+  .stats-section,
+  .gallery-grid,
+  .about-section,
+  .footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+    .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  nav, .header-menu-section {
+    padding: 0 100px;
+  }
 }
 
-.footer-links li a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-.social-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border-radius: 12px;
-  text-decoration: none;
-  color: white;
-  box-shadow: 0 0 15px #00f0ff;
-  transition: all 0.3s ease;
-  background-color: transparent;
-}
 
-.social-icon:hover {
-  box-shadow: none;
-}
-
-/* Brand-specific hover background */
-.social-icon.instagram:hover {
-  background-color: #e4405f;
-}
-
-.social-icon.whatsapp:hover {
-  background-color: #25D366;
-}
-
-.social-icon.gmail:hover {
-  background-color: #EA4335;
-}
-
-.social-icon.facebook:hover {
-  background-color: #1877f2;
-}
-
-.social-icon.youtube:hover {
-  background-color: #FF0000;
-}
-.social-icons img {
-  width: 32px;
-  margin-right: 16px;
-  filter: invert(1); /* makes black icons white */
-}
-.social-icons {
-  display: flex;
-  gap: 20px;
-}
-
-.social-icons a {
-  text-decoration: none;
-  color: white;
-  font-size: 20px; /* smaller icon size */
-  transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: #ccc; /* optional hover effect */
-}
