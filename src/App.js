@@ -66,14 +66,23 @@ import LoadingScreen from './LoadingScreen';
 function App() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 const handleLoadingComplete = () => setIsLoading(false);
 
-
   useEffect(() => {
-    setShowVideoModal(true); // show modal on every refresh
+    setShowVideoModal(true);
+
     if (videoRef.current) {
-      videoRef.current.play().catch(err => console.log(err));
+      const playVideo = () => {
+        videoRef.current.play().catch(() => {
+          // Retry after 100ms if autoplay fails
+          setTimeout(() => {
+            videoRef.current.play().catch(err => console.log("Video autoplay failed:", err));
+          }, 100);
+        });
+      };
+      playVideo();
     }
   }, []);
 
@@ -82,22 +91,97 @@ const handleLoadingComplete = () => setIsLoading(false);
   };
 
   return (
-  <Router>
-    {isLoading ? (
-      <LoadingScreen onComplete={handleLoadingComplete} />
-    ) : (
-      <>
-        {/* Video Modal */}
-        {showVideoModal && (
-          <div className="video-modal-overlay">
-            <div className="video-modal">
-              <button className="close-video-btn" onClick={closeVideoModal}>×</button>
-              <video ref={videoRef} autoPlay muted loop playsInline>
-                <source src="/diwali.mp4" type="video/mp4" />
-              </video>
+    <Router>
+      {isLoading ? (
+        <LoadingScreen onComplete={handleLoadingComplete} />
+      ) : (
+        <>
+          {/* Video Modal */}
+          {showVideoModal && (
+            <div
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, 0.8)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: 10000,
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  maxWidth: "90%",
+                  maxHeight: "90%",
+                  backgroundColor: "#000",
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  boxShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                <button
+                  onClick={closeVideoModal}
+                  style={{
+                    position: "absolute",
+                    top: "10px",
+                    right: "10px",
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    fontSize: "24px",
+                    cursor: "pointer",
+                    zIndex: 10001,
+                    transition: "background-color 0.3s ease",
+                  }}
+                >
+                  ×
+                </button>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    maxHeight: "80vh",
+                    display: "block",
+                    objectFit: "contain",
+                  }}
+                  onCanPlay={() => {
+                    const playPromise = videoRef.current?.play();
+                    if (playPromise !== undefined) {
+                      playPromise.catch(err => console.log("Video autoplay was prevented:", err));
+                    }
+                  }}
+                >
+                  <source src="/diwali.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                      {!isPlaying && (
+        <button
+          onClick={() => {
+            videoRef.current?.play();
+            setIsPlaying(true);
+          }}
+          style={{ display: 'none' }}
+        >
+          Play Video
+        </button>
+      )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+
 
           <Header />
 
@@ -130,7 +214,7 @@ const handleLoadingComplete = () => setIsLoading(false);
           <Route path="/services/footing-rc-details" element={<FootingRcDetails />} />
           <Route path="/services/column-rc-details" element={<ColumnRcDetails />} />
           <Route path="/services/beam-layout" element={<BeamLayout />} />
-          <Route path="/services/staircase-rc-details" element={<stairCaseRcDet />} />
+          <Route path="/services/staircase-rc-details" element={<StaircaseRcDetails />} />
           <Route path="/services/rc-details" element={<RcDetails />} />
           <Route path="/services/layout" element={<Layout />} />
           <Route path="/services/slab-rc-details" element={<SlabRcDetails />} />
