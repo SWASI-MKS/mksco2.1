@@ -51,6 +51,21 @@ function StatsSection() {
 }
 
 function GallerySection() {
+  const video1Ref = useRef(null);
+  const video2Ref = useRef(null);
+
+  const handleMouseEnter = (ref) => {
+    if (ref.current) {
+      ref.current.play();
+    }
+  };
+
+  const handleMouseLeave = (ref) => {
+    if (ref.current) {
+      ref.current.pause();
+    }
+  };
+
   const images = [aw2, aw1, aw4, aw3, aw5];
   return (
     <section className="gallery-section">
@@ -66,11 +81,23 @@ function GallerySection() {
       <div className="videos-section" style={{ marginTop: '40px', textAlign: 'center' }}>
         <h3 style={{ color: "#0000FF", fontSize: "38px", fontWeight: "bold" }}>Animated house model</h3><br></br>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-          <video controls style={{ maxWidth: '45%', height: 'auto' }}>
+          <video
+            ref={video1Ref}
+            muted
+            style={{ maxWidth: '45%', height: 'auto' }}
+            onMouseEnter={() => handleMouseEnter(video1Ref)}
+            onMouseLeave={() => handleMouseLeave(video1Ref)}
+          >
             <source src="/vid1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <video controls style={{ maxWidth: '45%', height: 'auto' }}>
+          <video
+            ref={video2Ref}
+            muted
+            style={{ maxWidth: '45%', height: 'auto' }}
+            onMouseEnter={() => handleMouseEnter(video2Ref)}
+            onMouseLeave={() => handleMouseLeave(video2Ref)}
+          >
             <source src="/vid2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -281,13 +308,14 @@ function HomePage() {
       </div>
       <div>
         <h3>ASSOCIATORS</h3><br /><br />
-        <ul>
-          <li><a href="https://www.amce.edu.in" target="_blank" rel="noopener noreferrer">AMCE</a></li>
-          <li><a href="https://souko.org" target="_blank" rel="noopener noreferrer">SOUKO</a></li>
-          <li><a href="https://lionsclubs.org" target="_blank" rel="noopener noreferrer">LIONS Madurai Host Club</a></li>
-        </ul>
+  <ul>
+      <li style={{ color: '#00BFFF' }}><u>AMCE</u></li>
+       <li style={{ color: '#00BFFF' }}><u>SOUKO</u></li>
+        <li style={{ color: '#00BFFF' }}><u>LIONS Madurai Host Club</u></li>
+        <li style={{ color: '#00BFFF' }}><u>SEFIndia</u></li>
+    </ul>
       </div>
-      <div>
+      <div>                 
         <h3>WEBPAGE THEME</h3><br /><br />
         <ul>
           <li><a href="/theme/light" target="_blank" rel="noopener noreferrer">Light</a></li>
